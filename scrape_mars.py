@@ -6,7 +6,7 @@ from splinter import Browser
 from bs4 import BeautifulSoup
 
 #Site Navigation
-executable_path = {"executable_path": "chromedriver"}
+executable_path = {"executable_path": "C:/Users/tazex/OneDrive/Desktop/HW13/chromedriver.exe"}
 browser = Browser("chrome", **executable_path, headless=False)
 
 
