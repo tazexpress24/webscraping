@@ -6,9 +6,19 @@ from splinter import Browser
 from bs4 import BeautifulSoup
 
 #Site Navigation
-executable_path = {"executable_path": "C:/Users/tazex/OneDrive/Desktop/HW13/chromedriver.exe"}
-browser = Browser("chrome", **executable_path, headless=False)
+browser = Browser("chrome", executable_path="chromedriver", headless=True)
+#executable_path = {executable_path= "chromedriver"}
+#browser = Browser("chrome", **executable_path, headless=False)
 
+def scrape():
+    try:
+        df = pd.read_html("http://space-facts.com/mars/")[0]
+    except BaseException:
+        return None
+    
+    df.columns = ["description", "value"]
+    df.set_index("description", inplace=True)
+    return df.to_html(classes="table table-striped")
 
 # Defining scrape & dictionary
 def scrape():
@@ -113,3 +123,4 @@ def marsHem():
         dictionary = {"title": title, "img_url": image_url}
         mars_hemisphere.append(dictionary)
     return mars_hemisphere
+
